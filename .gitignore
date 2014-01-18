@@ -1,0 +1,19 @@
+
+# Ruby / Rails
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+/log/*.log
+config/database.yml
+app/assets/stylesheets/.sass-cache/
+.sass-cache/

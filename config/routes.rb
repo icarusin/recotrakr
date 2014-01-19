@@ -1,5 +1,10 @@
 Recotrakr::Application.routes.draw do
-  get "pages/about"
+	
+  root to: 'pages#home'
+
+  match '/about', to: 'pages#about', via: "get"
+  match '/home', to: 'pages#home', via: "get"
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

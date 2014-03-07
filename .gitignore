@@ -17,3 +17,4 @@ tmp
 config/database.yml
 app/assets/stylesheets/.sass-cache/
 .sass-cache/
+.project

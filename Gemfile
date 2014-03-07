@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg',             '0.17.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -17,6 +17,12 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+# Use unicorn as the app server
+gem 'unicorn',                      '4.6.3'
+
+# Manage our processes
+gem 'foreman',                      '0.63.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -31,6 +37,13 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem "resque"
+gem "resque-scheduler"
+
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'just-datetime-picker'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

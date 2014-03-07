@@ -1,7 +1,0 @@
-calculate:
-  cron: "0 0 * * *"
-  queue: cron
-  class: CronTask
-  args: "calculate"
-  description: Calculates stats
-  rails_envs: development, production, staging

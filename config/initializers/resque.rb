@@ -1,14 +1,18 @@
-require 'resque'
 require 'resque_scheduler'
 
-config = YAML.load_file(Rails.root.join('config', 'resque.yml'))
-schedule = YAML.load_file(Rails.root.join('config', 'schedule.yml'))
+Resque.redis = 'localhost:6379'
+Resque.redis.namespace = "resque:SchedulerExample"
 
-# configure redis connection
-Resque.redis = config[Rails.env]
+# If you want to be able to dynamically change the schedule,
+# uncomment this line.  A dynamic schedule can be updated via the
+# Resque::Scheduler.set_schedule (and remove_schedule) methods.
+# When dynamic is set to true, the scheduler process looks for
+# schedule changes and applies them on the fly.
+# Note: This feature is only available in >=2.0.0.
+#Resque::Scheduler.dynamic = true
 
-# configure the schedule
-Resque.schedule = schedule
+Dir["#{Rails.root}/app/jobs/*.rb"].each { |file| require file }
 
-# set a custom namespace for redis (optional)
-Resque.redis.namespace = "resque:recotrakr"
+# The schedule doesn't need to be stored in a YAML, it just needs to
+# be a hash.  YAML is usually the easiest.
+Resque.schedule = YAML.load_file(Rails.root.join('config', 'resque_schedule.yml'))

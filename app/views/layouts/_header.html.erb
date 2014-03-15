@@ -1,0 +1,22 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "RecoTrakr", '#', id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+	  <% if user_signed_in? %>
+            <li><%= link_to 'Hi ' + current_user.name + '!', '#', :class => 'navbar-link' %></li>
+          <% end %>
+          <li><%= link_to "Home",    root_path %></li>
+          <li><%= link_to "About",    about_path %></li>          
+          <% if user_signed_in? %>
+	    <li><%= link_to 'Account', '#', :class => 'navbar-link' %></li>
+  	    <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+	  <% else %>
+  	    <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

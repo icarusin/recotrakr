@@ -5,10 +5,24 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="container">
+<%= render 'layouts/header' %>
+<% if notice %>
+  <p class="alert alert-notice"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-error"><%= alert %></p>
+<% end %>
+    <div class="navbar-header">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/stocks">Stocks</a></li>
+      </ul>      
+    </div>      
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</div>
 </body>
 </html>

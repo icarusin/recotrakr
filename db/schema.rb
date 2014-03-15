@@ -11,7 +11,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119104320) do
+ActiveRecord::Schema.define(version: 20140315180649) do
+
+  create_table "advisors", force: true do |t|
+    t.string   "name"
+    t.string   "institution"
+    t.string   "website"
+    t.string   "gender"
+    t.string   "jobTitle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "articles", force: true do |t|
+    t.integer  "advisor_id"
+    t.string   "url"
+    t.string   "source"
+    t.datetime "publish_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.string   "office_location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exchanges", force: true do |t|
+    t.string   "name"
+    t.string   "country"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recommendations", force: true do |t|
+    t.integer  "advisor_id"
+    t.integer  "stock_id"
+    t.integer  "article_id"
+    t.datetime "reco_start_date"
+    t.datetime "reco_end_date"
+    t.decimal  "start_value",              precision: 10, scale: 2
+    t.decimal  "end_value",                precision: 10, scale: 2
+    t.decimal  "recommendation_end_value", precision: 10, scale: 2
+    t.boolean  "open"
+    t.decimal  "diff_from_target",         precision: 10, scale: 2
+    t.boolean  "hit_target"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sectors", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stocks", force: true do |t|
+    t.integer  "exchange_id"
+    t.integer  "company_id"
+    t.integer  "sector_id"
+    t.string   "symbol"
+    t.decimal  "current_price", precision: 10, scale: 2
+    t.string   "total_shares"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.decimal  "price",            precision: 10, scale: 2
+    t.integer  "daily_volume"
+    t.datetime "transaction_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name",                   default: "",    null: false
